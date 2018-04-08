@@ -71,7 +71,7 @@ echo "user ALL=(ALL)" ALL >> /etc/sudoers
 
 # replace "user" in ALL THREE lines with whatever username you want
 
-# type ctrl X then y then enter
+# type ctrl-X then y then enter
 
 # now enter
 
@@ -81,9 +81,15 @@ sudo ./install-me
 
 # then you can use my arch1 script to install a desktop and many other things. 
 
-# in this one you also need to change the username in line ##
+# in this one you also need to change the username in line 173 or in option #6 to what you want
 
+sudo nano arch1
 
+     adduser username wheel ;;
+     
+# change username to what you want (you may also want to change it in line ## but it is just cosmetic)
+
+# ctrl-X then y then enter
 
 # then run (as root)
 

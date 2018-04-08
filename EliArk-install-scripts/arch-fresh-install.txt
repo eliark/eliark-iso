@@ -1,0 +1,277 @@
+
+(1)
+ give yourself more space
+##############################################
+FIRST!!!!!
+mount -o remount,size=1G /run/archiso/cowspace
+##############################################
+
+
+(2) 
+ set keyboard language ( temporary )
+##############################################
+now set the keymaps/keybord
+loadkeys es
+
+
+(3-A)
+ format and mount the drive
+##############################################
+GUI DISK partitioner
+
+cfdisk /dev/sd(x)                     x being whatever drive letter you have
+Follow directions
+----------------------------------------------------------------------------------------------------------------------------
+
+
+(3-B)
+once the partitions have been made format them
+### format to ext4 like this
+
+mkfs.ext4 /dev/sdx1
+mkfs.ext4 /dev/sdx2
+
+### format to swap like this
+
+mkswap /dev/sdx3
+
+
+###mount the partitions
+
+# IN THIS ORDER!! mount mnt
+       then create mnt/home
+
+mount /dev/sdx1 /mnt
+
+mkdir /mnt/home
+
+mount /dev/sdx2 /mnt/home
+
+swapon /dev/sdx3
+
+
+(4) connect to internet
+##############################################
+to connect to wifi
+wifi-menu
+ 
+if it is a wired pc
+dhcpcd
+
+check to make sure you are connected
+ip a
+and
+ping -c5 google.com
+
+
+(5)
+ update mirror list
+#############################################
+pacman -Sy reflector
+# then
+reflector --f 12 -l 10 -n 12 -save /etc/pacman.d/mirrorlist
+
+reflector --verbose --latest 50 --sort rate --save /etc/pacman.d/mirrorlist
+
+
+
+(6-A)
+ there is an install script for the rest
+############################################# 
+ in a terminal enter
+
+cd /home/liveuser/Desktop/install-script
+
+# then
+
+./strap-in
+
+
+# and it will do the rest. just fallow its instructions.
+
+# or if you prefer manual entry, refere to 6-B
+
+
+
+(6-B)
+ install base and base-devel
+############################################
+
+now that partitions are made and mounted. And internet is connected. It is now time to install the base system.
+
+pacstrap -i /mnt base base-devel
+
+now wait for it to finnish. Go get a snack, or a drink.
+
+
+(7) 
+make your fstab. VERRY IMPORTAINT!!!!
+############################################
+Don't forget to add this command.
+It will not boot if you forget this!
+
+genfstab -U -p /mnt >> /mnt/etc/fstab
+
+cat /mnt/etc/fstab
+--------------------------------------------
+################################
+################################
+
+(8)
+ now to switch to that setup
+################################
+arch-chroot /mnt
+
+
+(9) Configure the repository & install needed apps
+################################
+
+nano /etc/pacman.conf
+# Uncomment the line: [multilib] and include = /etc/pacman.d/mirrorlist
+
+# pacman -Sy
+pacman -S dialog grub grub-bios linux-headers linux-lts linux-lts-headers wpa_supplicant wireless_tools screenfetch htop openssh terminator tilda
+################################
+
+
+(10)
+ now to set your locale/your language
+################################
+i have a script for the rest
+./arch1
+
+but if you want to enter it in manually refere to 10-A
+---------------------------------------------
+
+(10-A)
+nano /etc/locale.gen
+ then scrole down to your language and remove the ( # ) in front of the two codes
+
+example (for english US)
+#en_US.UTF-8                     remove the ( # ) 
+#en_US ISO-8859-1       remove the ( # )
+ctrl+x
+(y) for yes
+enter
+
+(10-B)
+locale-gen
+
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+
+export LANG=en_US.UTF-8
+
+
+#########################################
+(11-A) set your timezone
+ln -s /usr/share/zoneinfo/America/Mexico_City /etc/locatime
+
+(11-B)
+hwclock --systohc --utc
+
+# later when logged in to the new desktop you may
+# need to run this code to activate locale time.
+
+timedatectl set-timezone America/Mexico_City
+
+
+#########################################
+(12) setup ssh
+#  if you installed ssh, then you need to enable it
+systemctl enable sshd.service
+
+(13) name the computer
+# set host name 
+echo archeli > /etc/hostname
+
+(14-A)
+# next we setup root password
+passwd
+
+# enter the NEW root password
+# re-enter new password
+----------------------------------
+
+(15)
+#add new user
+useradd -m -g users -G wheel,storage,power -s /bin/bash eli
+passwd eli
+
+# enter the NEW password for eli
+# re-enter new password for eli
+
+EDITOR=nano visudo
+# Uncomment the line: %wheel ALL=(ALL)
+Ctrl+X        y       enter
+----------------------------------
+
+(16-A)
+# make system bootable.
+# (*ASSUMES GRUB IS INSTALLED)
+
+grub-install --target=i386-pc --recheck /dev/sdx
+----------------------------------------------------
+
+(16-B)
+# update grub by runnung this
+
+grub-mkconfig -o /boot/grub/grub.cfg    # and enter
+-----------------------------------------------------
+
+(17) skip this step if you are using the standard arch iso
+
+# copy needed files from the (ARCHELI modified) Arch iso to the hard drive
+
+# exit arch-chroot
+exit 
+
+cp arch1 /mnt/root && cp arch-fresh-install.txt /mnt/root
+
+(18)
+# unmount all drives
+
+ umount -R /mnt
+----------------------------------------------------
+(19)
+# ALL DONE!! now to see if it worked. type
+exit
+reboot
+----------------------------------------------------
+
+(20)
+# pat yourself on the back, job well done!
+----------------------------------------------------
+
+
+################################
+################################
+### END OF PART 1: BASIC BIOS INSTALL ###
+################################
+################################
+
+PART 2:  INSTALL DESKTOP (GUI)
+
+
+# In the EliArk iso, I made a script for choosing and
+# installing a desktop as well as many other things.
+
+arch-chroot /mnt
+
+cd root
+
+./arch1
+
+# or try
+
+bash arch1
+
+# follow instructions
+
+
+TTTTTTTTTTTTTTTTTTTTTTTT
+HHHHHHHHHHHHHHHHHHHH
+EEEEEEEEEEEEEEEEEEEEEEEE
+
+EEEEEEEEEEEEEEEEEEEEEEEE
+NNNNNNNNNNNNNNNNNNNN
+DDDDDDDDDDDDDDDDDDDD

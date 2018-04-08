@@ -51,17 +51,21 @@ sudo ./strap-in
 
 sudo nano install-me
 
-# change line 32
+# change line 33
 
-echo "EliArk1" > /etc/hostname  
+echo "hostname" > /etc/hostname  
 
-# change "EliArk" to whatever hostname you want. but keep the quots
+# change "hostname" to whatever you want. but keep the quots
 
-# then change line 36
+# then change line 37 and 39
 
-useradd -m -g users -G wheel,storage,power -s /bin/bash eli  
+useradd -m -g users -G wheel,storage,power -s /bin/bash user  
 
-# replace "eli" at the end with whatever username you want
+# and
+
+passwd user
+
+# replace "user" at the end of BOTH with whatever username you want
 
 # type ctrl X then y then enter
 

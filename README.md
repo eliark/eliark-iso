@@ -59,7 +59,9 @@ sudo nano install-me
 
 echo "hostname" > /etc/hostname  
 
-# change "hostname" to whatever you want. but keep the quots
+# change "hostname" to whatever you want. but keep the quots like this
+
+echo "eli" > /etc/hostname  
 
 # then change line 37, 39, and 41
 

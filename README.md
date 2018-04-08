@@ -1,4 +1,6 @@
-# eliark-iso# Created by ELIAS WALKER 
+# eliark-iso
+#
+# Created by ELIAS WALKER 
 # 
 # These programs are free software; you can redistribute them and/or modify
 # them under the terms of the GNU General Public License as published by
@@ -28,7 +30,7 @@
 
 # to install arch
 # format the drive you want arch installed to. using cfdisk or the likes
-# then mount it to /mnt (this is Very important. because the script assumes it is mountes there
+# then mount it to /mnt (this is Very important. because the script assumes it is mounted there
 
 mount /dev/sdx0 /mnt
 

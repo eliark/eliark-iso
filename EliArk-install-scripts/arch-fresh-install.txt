@@ -110,9 +110,8 @@ make your fstab. VERRY IMPORTAINT!!!!
 Don't forget to add this command.
 It will not boot if you forget this!
 
-genfstab -U -p /mnt >> /mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
 
-cat /mnt/etc/fstab
 --------------------------------------------
 ################################
 ################################
@@ -130,7 +129,7 @@ nano /etc/pacman.conf
 # Uncomment the line: [multilib] and include = /etc/pacman.d/mirrorlist
 
 # pacman -Sy
-pacman -S dialog grub grub-bios linux-headers linux-lts linux-lts-headers wpa_supplicant wireless_tools screenfetch htop openssh terminator tilda
+pacman -S dialog grub grub-bios linux-headers linux-lts linux-lts-headers wpa_supplicant wireless_tools screenfetch htop openssh
 ################################
 
 
@@ -170,7 +169,7 @@ ln -s /usr/share/zoneinfo/America/Mexico_City /etc/locatime
 hwclock --systohc --utc
 
 # later when logged in to the new desktop you may
-# need to run this code to activate locale time.
+# need to run this next code to activate locale time.
 
 timedatectl set-timezone America/Mexico_City
 
@@ -181,8 +180,8 @@ timedatectl set-timezone America/Mexico_City
 systemctl enable sshd.service
 
 (13) name the computer
-# set host name 
-echo archeli > /etc/hostname
+# set host name like this # replace EliArk with whatever you want
+echo EliArk > /etc/hostname
 
 (14-A)
 # next we setup root password
@@ -193,12 +192,12 @@ passwd
 ----------------------------------
 
 (15)
-#add new user
-useradd -m -g users -G wheel,storage,power -s /bin/bash eli
-passwd eli
+#add new user like this (replacing "username" with whatever name you want)
+useradd -m -g users -G wheel,storage,power -s /bin/bash username
+passwd username
 
-# enter the NEW password for eli
-# re-enter new password for eli
+# enter the NEW password for username
+# re-enter new password for username
 
 EDITOR=nano visudo
 # Uncomment the line: %wheel ALL=(ALL)
@@ -220,7 +219,7 @@ grub-mkconfig -o /boot/grub/grub.cfg    # and enter
 
 (17) skip this step if you are using the standard arch iso
 
-# copy needed files from the (ARCHELI modified) Arch iso to the hard drive
+# copy needed files from the (EliArk-ISO) Arch iso to the hard drive
 
 # exit arch-chroot
 exit 
@@ -243,27 +242,29 @@ reboot
 ----------------------------------------------------
 
 
-################################
-################################
-### END OF PART 1: BASIC BIOS INSTALL ###
-################################
-################################
+#################################
+#################################
+END OF PART 1: BASIC BIOS INSTALL
+#################################
+#################################
 
 PART 2:  INSTALL DESKTOP (GUI)
 
 
 # In the EliArk iso, I made a script for choosing and
 # installing a desktop as well as many other things.
+#
+# login as root
+
+# or if you are still in the archiso/EliArk
 
 arch-chroot /mnt
 
 cd root
 
+# then
+
 ./arch1
-
-# or try
-
-bash arch1
 
 # follow instructions
 

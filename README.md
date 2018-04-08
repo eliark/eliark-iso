@@ -20,8 +20,8 @@
 ############################################################################
 
 
-# EliArk is under development. so dont expect everthing to work perfectly. 
-# calamares is currently broken. but should be fixed in the next release. 
+# EliArk is under development. so dont expect everything to work perfectly. 
+# calamares is currently broken in this release. but should be fixed in the next. 
 # I am aware of the issues with conky. it is fixed for the next release
 # if you find any other bugs or have any suggestions you can contact me at 
 

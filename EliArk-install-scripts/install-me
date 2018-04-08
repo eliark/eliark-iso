@@ -7,7 +7,8 @@
 #
 #
 #
-echo "KEYMAP=es" > /etc/vconsole.conf
+echo "KEYMAP=us" > /etc/vconsole.conf
+#echo "KEYMAP=es" > /etc/vconsole.conf
 
 pacman -Sy --noconfirm dialog grub grub-bios linux-lts linux-lts-headers wpa_supplicant wireless_tools screenfetch htop openssh
 

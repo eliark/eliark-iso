@@ -21,7 +21,9 @@
 
 
 # EliArk is under development. so dont expect everthing to work perfectly. 
-# if you find any bugs or have any suggestions you can contact me at 
+# calamares is currently broken. but should be fixed in the next release. 
+# I am aware of the issues with conky. it is fixed for the next release
+# if you find any other bugs or have any suggestions you can contact me at 
 
 # eliasw4u@gmail.com
 

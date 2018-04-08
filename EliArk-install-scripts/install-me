@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# depends on .zshrc and .bashrc
+# they must be in the same folder as this script
+#
+#
+#
+#
+#
+echo "KEYMAP=es" > /etc/vconsole.conf
+
+pacman -Sy --noconfirm dialog grub grub-bios linux-lts linux-lts-headers wpa_supplicant wireless_tools screenfetch htop openssh
+
+echo "en_US.UTF-8" > /etc/locale.gen
+
+echo "en_US ISO-8859-1" >> /etc/locale.gen
+
+locale-gen
+
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+
+export LANG=en_US.UTF-8
+
+ln -s /usr/share/zoneinfo/America/Mexico_City /etc/locatime
+
+hwclock --systohc --utc
+
+timedatectl set-timezone America/Mexico_City
+
+systemctl enable sshd.service
+
+echo "EliArk1" > /etc/hostname
+
+passwd
+
+useradd -m -g users -G wheel,storage,power -s /bin/bash eli
+
+passwd eli
+
+echo "eli ALL=(ALL)" ALL >> /etc/sudoers
+
+pacman -Sy --noconfirm os-prober
+
+grub-install --target=i386-pc --recheck /dev/sda
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+cp arch1 /mnt/home/eli && cp arch-fresh-install.txt /mnt/home/eli
+
+
+echo ""
+echo "##################################################################"
+echo ""
+echo "all finnished."
+echo ""
+echo "now run"
+echo "" 
+echo "./arch1"
+
+
+

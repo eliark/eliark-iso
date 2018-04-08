@@ -119,7 +119,7 @@ getDate
       echo " (3)__check and run update_______________enter__3: "
       echo " (4)__install needed console apps________enter__4: "
       echo " (5)__install basic desktop apps_________enter__5: "
-      echo " (6)__make (eli) a super user____________enter__6: "
+      echo " (6)__make (username) a super user_______enter__6: "
       echo " (7)__manually make user superuser_______enter__7: "
       echo " (8)__install network manager____________enter__8: "
       echo " (9)__update the bootloader (grub)_______enter__9: "
@@ -170,7 +170,7 @@ getDate
   6)
      clear
      clear
-     adduser eli wheel ;;
+     adduser username wheel ;;
 #-----------------------------------------------------------------------
 # edit file manually 
   7)

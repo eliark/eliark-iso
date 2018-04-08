@@ -57,7 +57,7 @@ echo "hostname" > /etc/hostname
 
 # change "hostname" to whatever you want. but keep the quots
 
-# then change line 37 and 39
+# then change line 37, 39, and 41
 
 useradd -m -g users -G wheel,storage,power -s /bin/bash user  
 
@@ -65,7 +65,11 @@ useradd -m -g users -G wheel,storage,power -s /bin/bash user
 
 passwd user
 
-# replace "user" at the end of BOTH with whatever username you want
+# and
+
+echo "user ALL=(ALL)" ALL >> /etc/sudoers
+
+# replace "user" in ALL THREE lines with whatever username you want
 
 # type ctrl X then y then enter
 
@@ -73,11 +77,15 @@ passwd user
 
 sudo ./install-me
 
-# be sure to first change line 32 and 36 to the username name hand to the hostname you want
-
-# this will install the base system and set it up to boot the new arch 
+# this will install the base system, add user, set permissions, and set it up to boot the new arch 
 
 # then you can use my arch1 script to install a desktop and many other things. 
+
+# in this one you also need to change the username in line ##
+
+
+
+# then run (as root)
 
 sudo ./arch1
 

@@ -87,7 +87,8 @@ sudo nano arch1
 
      adduser username wheel ;;
      
-# change username to what you want (you may also want to change it in line ## but it is just cosmetic)
+# change username to what you want (you may also want to change it in line 122
+# but line 122 is just cosmetic and will still work without a change)
 
 # ctrl-X then y then enter
 
